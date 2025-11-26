@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  nginx-gateway:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - api-service
+
+  api-service:
+    build: ./api-service
+    environment:
+      - DB_HOST=postgres-db
+
+  postgres-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: crud_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
