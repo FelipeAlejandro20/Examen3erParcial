@@ -1,5 +1,7 @@
 FROM nginx:alpine
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Borramos la config por defecto (opcional pero recomendable)
+RUN rm /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+# Copiamos nuestra config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
